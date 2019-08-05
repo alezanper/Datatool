@@ -15,19 +15,23 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { StepsComponent } from './steps/steps.component';
-import { CheckingComponent } from './checking/checking.component';
+import { CheckingComponent, DialogOverviewExampleDialog } from './checking/checking.component';
 import { CheckerService } from './checking/checkerservice.service';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [
     AppComponent,
     TopbarComponent,
     StepsComponent,
-    CheckingComponent
+    CheckingComponent,
+    DialogOverviewExampleDialog
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    MatCheckboxModule,
     MatToolbarModule,
     MatMenuModule,
     MatIconModule,
@@ -36,12 +40,13 @@ import { CheckerService } from './checking/checkerservice.service';
     MatFormFieldModule,
     MatInputModule,
     MatButtonToggleModule,
-    AppRoutingModule,
-    
+    AppRoutingModule, 
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule, MatDialogModule
   ],
   providers: [CheckerService],
+  entryComponents: [ DialogOverviewExampleDialog ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule { 
+}

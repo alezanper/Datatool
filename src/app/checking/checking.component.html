@@ -1,38 +1,42 @@
+
+
 <div class="container">
+  <hr>
     <div class="row">
       <mat-button-toggle-group #group="matButtonToggleGroup">
         <mat-button-toggle value="phone" checked (click)="setChecker(group.value)">
-          <mat-icon>phone</mat-icon>
+          <mat-icon>phone</mat-icon>Phone
         </mat-button-toggle>
         <mat-button-toggle value="email" (click)="setChecker(group.value)">
-          <mat-icon>mail</mat-icon>
+          <mat-icon>mail</mat-icon>E-Mail 
         </mat-button-toggle>
       </mat-button-toggle-group>
     </div>
   
     <hr>
-  
-    <div class="row">
-      <form [formGroup]="checkForm">
-        <div class="col-xs-12">
-          <label for="email">{{ checkerSelected.getType() }}</label>
-  
-          <div class="input-group">
+   
+
+
+      <form [formGroup]="checkForm" class="row">
+
+        
+          <div class="input-group mb-3">
+            
             <input 
+              class="form-control"
               [type]="checkerSelected.getInputType()" 
               formControlName="email" 
               id="email" class="form-control" 
-              [placeholder]="checkerSelected.getPlaceHolder()">
+              [placeholder]="checkerSelected.getPlaceHolder()" 
+            >
             <span class="input-group-btn">
-              <button class="btn btn-primary" type="button">Check!</button>
+              <button class="btn btn-primary" type="button" (click)="openDialog()">Rules!</button>
             </span>
-          </div>
   
         </div>
         <div *ngIf="checkForm.get('email').untouched" class="alert alert-info" role="alert">Let's check</div>
         <div *ngIf="checkForm.get('email').valid && checkForm.get('email').touched" class="alert alert-success" role="alert">{{ checkerSelected.getType() }} Correct</div>
         <div *ngIf="!checkForm.get('email').valid && checkForm.get('email').touched" class="alert alert-danger" role="alert">{{ checkerSelected.getType() }} Invalid</div>
       </form>
-    </div>
   
   </div>

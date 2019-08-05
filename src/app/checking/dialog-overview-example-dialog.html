@@ -1,0 +1,10 @@
+<h1 mat-dialog-title>Rules</h1>
+<div class="row">
+    <mat-checkbox>Rule 1</mat-checkbox> <hr>
+    <mat-checkbox>Rule 2</mat-checkbox> <hr>
+    <mat-checkbox>Rule 3</mat-checkbox>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Ok</button>
+</div>

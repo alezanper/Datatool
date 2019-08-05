@@ -22,4 +22,8 @@ export class checker {
     public getPattern(){
         return this.pattern;
     }
+
+    public getInputType(){
+        return this.inputType;
+    }
 }
