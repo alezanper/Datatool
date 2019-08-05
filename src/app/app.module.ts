@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { TopbarComponent } from './topbar/topbar.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -13,12 +14,16 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
-
+import { StepsComponent } from './steps/steps.component';
+import { CheckingComponent } from './checking/checking.component';
+import { CheckerService } from './checking/checkerservice.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TopbarComponent
+    TopbarComponent,
+    StepsComponent,
+    CheckingComponent
   ],
   imports: [
     BrowserModule,
@@ -31,9 +36,12 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
     MatFormFieldModule,
     MatInputModule,
     MatButtonToggleModule,
-    AppRoutingModule
+    AppRoutingModule,
+    
+    FormsModule,
+    ReactiveFormsModule
   ],
-  providers: [],
+  providers: [CheckerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

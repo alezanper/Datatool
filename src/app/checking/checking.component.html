@@ -1,0 +1,38 @@
+<div class="container">
+    <div class="row">
+      <mat-button-toggle-group #group="matButtonToggleGroup">
+        <mat-button-toggle value="phone" checked (click)="setChecker(group.value)">
+          <mat-icon>phone</mat-icon>
+        </mat-button-toggle>
+        <mat-button-toggle value="email" (click)="setChecker(group.value)">
+          <mat-icon>mail</mat-icon>
+        </mat-button-toggle>
+      </mat-button-toggle-group>
+    </div>
+  
+    <hr>
+  
+    <div class="row">
+      <form [formGroup]="checkForm">
+        <div class="col-xs-12">
+          <label for="email">{{ checkerSelected.getType() }}</label>
+  
+          <div class="input-group">
+            <input 
+              [type]="checkerSelected.getInputType()" 
+              formControlName="email" 
+              id="email" class="form-control" 
+              [placeholder]="checkerSelected.getPlaceHolder()">
+            <span class="input-group-btn">
+              <button class="btn btn-primary" type="button">Check!</button>
+            </span>
+          </div>
+  
+        </div>
+        <div *ngIf="checkForm.get('email').untouched" class="alert alert-info" role="alert">Let's check</div>
+        <div *ngIf="checkForm.get('email').valid && checkForm.get('email').touched" class="alert alert-success" role="alert">{{ checkerSelected.getType() }} Correct</div>
+        <div *ngIf="!checkForm.get('email').valid && checkForm.get('email').touched" class="alert alert-danger" role="alert">{{ checkerSelected.getType() }} Invalid</div>
+      </form>
+    </div>
+  
+  </div>
