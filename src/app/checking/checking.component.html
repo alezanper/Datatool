@@ -27,13 +27,17 @@
                     </mat-panel-description>
                 </mat-expansion-panel-header>
 
-                <mat-form-field>
-                    <input matInput placeholder="First name">
-                </mat-form-field>
+                <section class="example-section">
 
-                <mat-form-field>
-                    <input matInput type="number" min="1" placeholder="Age">
-                </mat-form-field>
+                    <label class="example-margin">Data Type:</label>
+                    <mat-radio-group>
+                        <mat-radio-button class="example-margin" value="after">Numeric</mat-radio-button>
+                        <mat-radio-button class="example-margin" value="before">Alfanumeric</mat-radio-button>
+                        <mat-radio-button class="example-margin" value="before">Date</mat-radio-button>
+
+                    </mat-radio-group>
+                </section>
+
 
                 <mat-action-row>
                     <button mat-button color="primary" (click)="nextStep()">Next</button>

@@ -19,9 +19,11 @@ import { CheckingComponent, DialogOverviewExampleDialog } from './checking/check
 import { CheckerService } from './checking/checkerservice.service';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatRadioModule } from '@angular/material/radio';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/';
+
 
 @NgModule({
   declarations: [
@@ -45,7 +47,7 @@ import { MatNativeDateModule } from '@angular/material/';
     MatButtonToggleModule,
     AppRoutingModule, 
     FormsModule,
-    ReactiveFormsModule, MatDialogModule, MatExpansionModule, MatDatepickerModule, MatNativeDateModule 
+    ReactiveFormsModule, MatDialogModule, MatExpansionModule, MatDatepickerModule, MatNativeDateModule, MatRadioModule
   ],
   providers: [CheckerService],
   entryComponents: [ DialogOverviewExampleDialog ],
