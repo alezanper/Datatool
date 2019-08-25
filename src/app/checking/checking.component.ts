@@ -20,12 +20,15 @@ export class CheckingComponent implements OnInit {
 
   checkForm: FormGroup;
   checkerSelected: checker;
+  checked: boolean;
+
+
+  types: string[] = ["Numeric", "String", "Date"];
 
   constructor(private checkerService: CheckerService, public dialog: MatDialog) { }
 
   ngOnInit() {
     this.checkerSelected = this.checkerService.getChecker(1);
-    this.checkData();
   }
 
   setChecker(checkerType: string){
@@ -34,13 +37,6 @@ export class CheckingComponent implements OnInit {
       case "phone": this.checkerSelected = this.checkerService.getChecker(1);  break;
       default: break;
     }
-    this.checkData();
-  }
-
-  checkData(){
-    this.checkForm = new FormGroup({
-      'email': new FormControl(null, [Validators.pattern(this.checkerSelected.getPattern())])
-    });
   }
  
   animal: string;
@@ -56,6 +52,22 @@ export class CheckingComponent implements OnInit {
       console.log('The dialog was closed');
       this.animal = result;
     });
+  }
+
+
+
+  step = 0;
+
+  setStep(index: number) {
+    this.step = index;
+  }
+
+  nextStep() {
+    this.step++;
+  }
+
+  prevStep() {
+    this.step--;
   }
 
 
