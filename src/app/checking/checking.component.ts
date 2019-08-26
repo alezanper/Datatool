@@ -82,6 +82,10 @@ export class CheckingComponent implements OnInit {
     }
   }
 
+  goDataTypes(){
+    this.setStep(0);
+  }
+
 
   step = 0;
 

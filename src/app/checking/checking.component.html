@@ -3,12 +3,12 @@
 
     <form>
         <div class="input-group mb-3">
-            <input [type]="checkerSelected.getInputType()" id="email" [placeholder]="checkerSelected.getPlaceHolder()">
-            <span class="input-group-btn">
-                <button class="btn btn-primary" type="button" (click)="openDialog()">Rules!</button>
-            </span>
+            <input type="text" class="form-control" placeholder="Data to check" aria-label="Recipient's username">
+            <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="button" id="button-addon2">Let's Check</button>
+            </div>
         </div>
-
+        <hr>
         <mat-accordion>
             <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)">
                 <mat-expansion-panel-header>
@@ -28,31 +28,22 @@
 
             <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" [disabled]="type != 'Numeric'">
                 <mat-expansion-panel-header>
-                    <mat-panel-title>
-                        Rules for Numeric data:
-                    </mat-panel-title>
-                    <mat-panel-description>
-                        Inform the date you wish to travel
-                        <mat-icon>date_range</mat-icon>
-                    </mat-panel-description>
+                    <mat-panel-title>Rules for Numeric data:</mat-panel-title>
                 </mat-expansion-panel-header>
 
                 <mat-form-field>
                     <input matInput placeholder="Date" [matDatepicker]="picker" (focus)="picker.open()" readonly>
                 </mat-form-field>
                 <mat-datepicker #picker></mat-datepicker>
+                <mat-action-row>
+                    <button mat-button color="primary" (click)="goDataTypes()">To Data Types</button>
+                </mat-action-row>
             </mat-expansion-panel>
-
-
 
             <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" [disabled]="type != 'Alphanumeric'">
                 <mat-expansion-panel-header>
-                    <mat-panel-title>
-                        Rules for Alphanumeric data:
-                    </mat-panel-title>
-                    <mat-panel-description></mat-panel-description>
+                    <mat-panel-title>Rules for Alphanumeric data:</mat-panel-title>
                 </mat-expansion-panel-header>
-
 
                 <mat-checkbox class="example-margin" [(ngModel)]="checked" name="checked">Length Restriction</mat-checkbox>
                 <mat-form-field>
@@ -66,18 +57,18 @@
                 <div>
                     <mat-checkbox class="example-margin" [(ngModel)]="checked" name="checked">Allow Special characteres</mat-checkbox>
                 </div>
+
+                <mat-action-row>
+                    <button mat-button color="primary" (click)="goDataTypes()">To Data Types</button>
+                </mat-action-row>
             </mat-expansion-panel>
 
 
 
             <mat-expansion-panel [expanded]="step === 3" (opened)="setStep(3)" [disabled]="type != 'Date'">
                 <mat-expansion-panel-header>
-                    <mat-panel-title>
-                        Rules for Dates:
-                    </mat-panel-title>
-                    <mat-panel-description></mat-panel-description>
+                    <mat-panel-title>Rules for Dates:</mat-panel-title>
                 </mat-expansion-panel-header>
-
 
                 <mat-checkbox class="example-margin" [(ngModel)]="checked" name="checked">Length Restriction</mat-checkbox>
                 <mat-form-field>
@@ -91,10 +82,12 @@
                 <div>
                     <mat-checkbox class="example-margin" [(ngModel)]="checked" name="checked">Allow Special characteres</mat-checkbox>
                 </div>
+
+                <mat-action-row>
+                    <button mat-button color="primary" (click)="goDataTypes()">To Data Types</button>
+                </mat-action-row>
             </mat-expansion-panel>
         </mat-accordion>
-
-        <button class="btn btn-primary" type="button" (click)="setChecker('email')">Rules!</button>
     </form>
 
 </div>
