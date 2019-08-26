@@ -21,15 +21,25 @@ export class CheckingComponent implements OnInit {
   checkForm: FormGroup;
   checkerSelected: checker;
   checked: boolean;
+  regexpNumber: RegExp;
+  type: string;
 
+  enableAlphaNumeric: boolean;
+  enableNumeric: boolean;
+  enableDate: boolean;
 
-  types: string[] = ["Numeric", "String", "Date"];
+  types: string[] = ["Numeric", "Alphanumeric", "Date"];
 
   constructor(private checkerService: CheckerService, public dialog: MatDialog) { }
 
   ngOnInit() {
     this.checkerSelected = this.checkerService.getChecker(1);
+    this.type = "Numeric";
+    this.enableNumeric = false;
+    this.enableAlphaNumeric = true;
+    this.enableDate = true;
   }
+
 
   setChecker(checkerType: string){
     switch(checkerType){
@@ -37,6 +47,11 @@ export class CheckingComponent implements OnInit {
       case "phone": this.checkerSelected = this.checkerService.getChecker(1);  break;
       default: break;
     }
+  }
+
+
+  getChecker(test: checker){
+    this.regexpNumber = new RegExp('^[+ 0-9]{5}$');
   }
  
   animal: string;
@@ -54,6 +69,18 @@ export class CheckingComponent implements OnInit {
     });
   }
 
+
+  goRestriction(type: string){
+    switch(type){
+      case "Numeric": this.setStep(1);
+        break;
+      case "Alphanumeric": this.setStep(2);
+        break;
+      case "Date": this.setStep(3);
+        break;
+      default: break;
+    }
+  }
 
 
   step = 0;

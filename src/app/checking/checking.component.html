@@ -9,49 +9,27 @@
             </span>
         </div>
 
-
         <mat-accordion>
-            <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
+            <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)">
                 <mat-expansion-panel-header>
                     <mat-panel-title>Data type:</mat-panel-title>
-                    <mat-panel-description>{{ checkerSelected.type }}</mat-panel-description>
+                    <mat-panel-description>{{ type }}</mat-panel-description>
                 </mat-expansion-panel-header>
                 <section class="example-section">
-                    <mat-radio-group [(ngModel)]="checkerSelected.type" name="type" aria-labelledby="example-radio-group-label" class="example-radio-group">
+                    <mat-radio-group [(ngModel)]="type" name="type" aria-labelledby="example-radio-group-label" class="example-radio-group">
                         <mat-radio-button class="example-margin" *ngFor="let type of types" [value]="type">{{ type }}</mat-radio-button>
                     </mat-radio-group>
                 </section>
                 <mat-action-row>
-                    <button mat-button color="primary" (click)="nextStep()">Next</button>
-                </mat-action-row>
-
-            </mat-expansion-panel>
-
-
-            <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle>
-                <mat-expansion-panel-header>
-                    <mat-panel-title>
-                        Length
-                    </mat-panel-title>
-                    <mat-panel-description></mat-panel-description>
-                </mat-expansion-panel-header>
-
-                <mat-checkbox class="example-margin" [(ngModel)]="checked" name="checked">Length Restriction</mat-checkbox>
-                <input matInput type="number" placeholder="min" [disabled]="!checked">
-                <input matInput type="number" placeholder="max" [disabled]="!checked">
-
-
-                <mat-action-row>
-                    <button mat-button color="warn" (click)="prevStep()">Previous</button>
-                    <button mat-button color="primary" (click)="nextStep()">Next</button>
+                    <button mat-button color="primary" (click)="goRestriction(type)">Go Rules</button>
                 </mat-action-row>
             </mat-expansion-panel>
 
 
-            <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle>
+            <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" [disabled]="type != 'Numeric'">
                 <mat-expansion-panel-header>
                     <mat-panel-title>
-                        Day of the trip
+                        Rules for Numeric data:
                     </mat-panel-title>
                     <mat-panel-description>
                         Inform the date you wish to travel
@@ -63,20 +41,60 @@
                     <input matInput placeholder="Date" [matDatepicker]="picker" (focus)="picker.open()" readonly>
                 </mat-form-field>
                 <mat-datepicker #picker></mat-datepicker>
-
-                <mat-action-row>
-                    <button mat-button color="warn" (click)="prevStep()">Previous</button>
-                    <button mat-button color="primary" (click)="nextStep()">End</button>
-                </mat-action-row>
             </mat-expansion-panel>
 
 
+
+            <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" [disabled]="type != 'Alphanumeric'">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        Rules for Alphanumeric data:
+                    </mat-panel-title>
+                    <mat-panel-description></mat-panel-description>
+                </mat-expansion-panel-header>
+
+
+                <mat-checkbox class="example-margin" [(ngModel)]="checked" name="checked">Length Restriction</mat-checkbox>
+                <mat-form-field>
+                    <mat-label>Min</mat-label>
+                    <input matInput type="number" [(ngModel)]="checkerSelected.min" name="min" placeholder="Min" [disabled]="!checked">
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Max</mat-label>
+                    <input matInput type="number" placeholder="Max" [disabled]="!checked">
+                </mat-form-field>
+                <div>
+                    <mat-checkbox class="example-margin" [(ngModel)]="checked" name="checked">Allow Special characteres</mat-checkbox>
+                </div>
+            </mat-expansion-panel>
+
+
+
+            <mat-expansion-panel [expanded]="step === 3" (opened)="setStep(3)" [disabled]="type != 'Date'">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        Rules for Dates:
+                    </mat-panel-title>
+                    <mat-panel-description></mat-panel-description>
+                </mat-expansion-panel-header>
+
+
+                <mat-checkbox class="example-margin" [(ngModel)]="checked" name="checked">Length Restriction</mat-checkbox>
+                <mat-form-field>
+                    <mat-label>Min</mat-label>
+                    <input matInput type="number" [(ngModel)]="checkerSelected.min" name="min" placeholder="Min" [disabled]="!checked">
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Max</mat-label>
+                    <input matInput type="number" placeholder="Max" [disabled]="!checked">
+                </mat-form-field>
+                <div>
+                    <mat-checkbox class="example-margin" [(ngModel)]="checked" name="checked">Allow Special characteres</mat-checkbox>
+                </div>
+            </mat-expansion-panel>
         </mat-accordion>
 
         <button class="btn btn-primary" type="button" (click)="setChecker('email')">Rules!</button>
-
-
-
     </form>
 
 </div>

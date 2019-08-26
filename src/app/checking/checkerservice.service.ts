@@ -9,4 +9,13 @@ export class CheckerService {
     public getChecker(id: number){
         return this.checkers[id];
     }
+
+    regexpNumber = new RegExp('^[+ 0-9]{5}$');
+
+
+    private patterns: string[] = ["[A-Z]+", "^[3]{1}[0-9]{9}$"];
+
+    public getPatterns(id: number){
+        return this.patterns[id];
+    }
 }
